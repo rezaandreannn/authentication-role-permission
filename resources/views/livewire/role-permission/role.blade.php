@@ -90,4 +90,45 @@
                </div>
            </div>
        </section>
+
+       @push('css-library')
+       <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
+
+       @endpush
+
+       @push('js-library')
+       <script src="{{ asset('mazer/dist/assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
+       <script>
+           let table1 = document.querySelector('#table1');
+
+           let translations = {
+               search: "{{ __('datatable.search') }}"
+               , showEntries: "{{ __('datatable.show_entries') }}"
+               , info: "{{ __('datatable.info') }}"
+               , infoEmpty: "{{ __('datatable.info_empty') }}"
+               , paginate: {
+                   first: "{{ __('datatable.paginate.first') }}"
+                   , last: "{{ __('datatable.paginate.last') }}"
+                   , next: "{{ __('datatable.paginate.next') }}"
+                   , previous: "{{ __('datatable.paginate.previous') }}"
+               }
+           };
+
+           let dataTable = new simpleDatatables.DataTable(table1, {
+               labels: {
+                   placeholder: translations.search
+                   , noRows: translations.infoEmpty
+                   , info: translations.info
+                   , pagination: {
+                       first: translations.paginate.first
+                       , last: translations.paginate.last
+                       , next: translations.paginate.next
+                       , prev: translations.paginate.previous
+                   }
+               }
+           });
+
+       </script>
+
+       @endpush
    </div>
