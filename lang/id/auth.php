@@ -41,8 +41,16 @@ return [
         'already_have_account' => 'Sudah punya akun?',
     ],
 
+    'verify' => [
+        'description' => "Terima kasih telah mendaftar! Sebelum memulai, dapatkah Anda memverifikasi alamat email Anda dengan mengklik tautan yang baru saja kami kirimkan melalui email kepada Anda? Jika Anda tidak menerima email, kami akan dengan senang hati mengirimkan email lain kepada Anda.",
+        'resend' => 'Kirim Ulang Email Verifikasi',
+        'logout' => 'Keluar'
+    ],
+
     'forgot' => [
-        'title' => 'Lupa kata sandi'
+        'title' => 'Lupa kata sandi',
+        'description' => 'Lupa Kata Sandi Anda? Tidak ada masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru.',
+        'reset_link' => 'Tautan Reset Kata Sandi Email'
     ],
 
     'failed' => 'Kredensial ini tidak cocok dengan data kami.',

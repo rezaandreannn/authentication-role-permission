@@ -84,4 +84,16 @@ class UserController extends Controller
     {
         //
     }
+
+    public function updateVerificationStatus(Request $request, User $user)
+    {
+        $request->validate([
+            'verified' => 'required|boolean',
+        ]);
+
+        $user->email_verified_at = $request->verified ? now() : null;
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
 }

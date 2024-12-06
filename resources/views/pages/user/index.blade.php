@@ -18,9 +18,6 @@
         </div>
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    Data User
-                </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>
@@ -28,7 +25,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>role & permission</th>
+                                <th>{{ ucfirst(__('role-permission.role.title')) }} & {{ ucfirst(__('role-permission.permission.title'))    }}</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -38,14 +35,19 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <span class="badge bg-success">Active</span>
+                                    <input type="checkbox" class="form-check-input" {{ $user->email_verified_at ? 'checked' : '' }} data-id="{{ $user->id }}" onchange="updateVerificationStatus(this)">
                                 </td>
                                 <td>
-                                    <a href="{{ route('user-has-role.index', $user->id )}}" class="badge bg-primary">role</a>
-                                    <a href="{{ route('user-has-permission.index', $user->id )}}" class="badge bg-primary">permission</a>
+                                    <a href="{{ route('user-has-role.index', $user->id )}}" class="badge bg-primary">{{ ucfirst(__('role-permission.role.title')) }}</a>
+                                    <a href="{{ route('user-has-permission.index', $user->id )}}" class="badge bg-primary">{{ ucfirst(__('role-permission.permission.title')) }}</a>
                                 </td>
                                 <td>
-                                    hapus | delete
+                                    <a href="" class="btn btn-warning btn-sm">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -55,4 +57,79 @@
             </div>
         </section>
     </div>
+
+    @push('css-library')
+    <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
+
+    @endpush
+
+    @push('js-library')
+    <script src="{{ asset('mazer/dist/assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
+    <script>
+        let table1 = document.querySelector('#table1');
+
+        let translations = {
+            search: "{{ __('datatable.search') }}"
+            , showEntries: "{{ __('datatable.show_entries') }}"
+            , info: "{{ __('datatable.info') }}"
+            , infoEmpty: "{{ __('datatable.info_empty') }}"
+            , paginate: {
+                first: "{{ __('datatable.paginate.first') }}"
+                , last: "{{ __('datatable.paginate.last') }}"
+                , next: "{{ __('datatable.paginate.next') }}"
+                , previous: "{{ __('datatable.paginate.previous') }}"
+            }
+        };
+
+        let dataTable = new simpleDatatables.DataTable(table1, {
+            labels: {
+                placeholder: translations.search
+                , noRows: translations.infoEmpty
+                , info: translations.info
+                , pagination: {
+                    first: translations.paginate.first
+                    , last: translations.paginate.last
+                    , next: translations.paginate.next
+                    , prev: translations.paginate.previous
+                }
+            }
+        });
+
+    </script>
+
+    <script>
+        function updateVerificationStatus(checkbox) {
+            const userId = checkbox.dataset.id;
+            const isChecked = checkbox.checked;
+
+            fetch(`/users/${userId}/verify`, {
+                    method: 'POST'
+                    , headers: {
+                        'Content-Type': 'application/json'
+                        , 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                    , body: JSON.stringify({
+                        verified: isChecked
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Status verifikasi berhasil diperbarui.');
+                    } else {
+                        alert('Gagal memperbarui status.');
+                        checkbox.checked = !isChecked; // Kembalikan status checkbox jika gagal
+                    }
+                })
+                .catch(error => {
+                    alert('Terjadi kesalahan!');
+                    checkbox.checked = !isChecked; // Kembalikan status checkbox jika error
+                });
+        }
+
+    </script>
+
+
+    @endpush
+
 </x-app-layout>

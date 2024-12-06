@@ -39,7 +39,7 @@
     </form>
     <div class="text-center mt-5 text-lg fs-4">
         <p class="text-gray-600">{{ __('auth.login.dont_have_an_account')}} <a href="{{ route('register')}}" class="font-bold">{{ __('auth.register.title')}} </a>.</p>
-        <p><a class="font-bold" href="auth-forgot-password.html">{{ __('auth.forgot.title')}}?</a>.</p>
+        <p><a class="font-bold" href="{{ route('password.request')}}">{{ __('auth.forgot.title')}}?</a>.</p>
     </div>
 </x-guest-layout>
 

@@ -2,8 +2,10 @@
 
 return [
     'sidebar' => [
+        'header' => [
+            'authentication_authoriztion' => 'Access Control'
+        ],
         'dashboard' => 'Dashboard',
-        'pages' => 'Pages',
         'auth' => 'authentication',
         'user' => 'User',
         'role' => 'Role',

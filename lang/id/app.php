@@ -2,9 +2,11 @@
 
 return [
     'sidebar' => [
+        'header' => [
+            'authentication_authoriztion' => 'Keamanan akses'
+        ],
         'dashboard' => 'Dashboard',
-        'pages' => 'Halaman',
-        'auth' => 'Otentikasi',
+        'auth' => 'Autentikasi',
         'user' => 'Pengguna',
         'role' => 'Peran',
         'permission' => 'Perizinan',

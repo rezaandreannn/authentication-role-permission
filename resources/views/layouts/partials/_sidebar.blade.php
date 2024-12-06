@@ -31,7 +31,7 @@
                  </li>
                  @endcan
 
-                 <li class="sidebar-title">{{ __('app.sidebar.pages')}}</li>
+                 <li class="sidebar-title">{{ __('app.sidebar.header.authentication_authoriztion')}}</li>
 
                  <li class="sidebar-item {{ Request::is('user*') || Request::is('role*') || Request::is('permission*') ? 'active' : '' }}  has-sub">
                      <a href="#" class='sidebar-link'>
@@ -48,7 +48,7 @@
                          <li class="submenu-item {{ Request::is('permission') ? 'active' : '' }}">
                              <a href="{{ route('permission.index') }}">{{ __('app.sidebar.permission') }}</a>
                          </li>
-                         <li class="submenu-item {{ Request::is('permission') ? 'active' : '' }}">
+                         <li class="submenu-item {{ Request::is('role-has-permission') ? 'active' : '' }}">
                              <a href="{{ route('role-has-permission.index') }}">{{ __('app.sidebar.role_has_permission') }}</a>
                          </li>
                      </ul>
