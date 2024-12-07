@@ -65,6 +65,13 @@ return [
     'user_has_permission' => [
         'title' => 'Pengguna memiliki perizinan',
         'button_save' => 'Simpan perizinan'
+    ],
+    'role_has_permission' => [
+        'select_role' => 'Pilih peran',
+        'permission' => 'Perizinan',
+        'button_save' => 'Simpan perizinan',
+        'success' => 'Izin berhasil diperbarui!'
     ]
+
 
 ];

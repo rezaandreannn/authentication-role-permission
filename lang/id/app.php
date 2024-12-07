@@ -16,5 +16,9 @@ return [
         'profile' => 'Profil saya',
         'setting' => 'Pengaturan',
         'logout' => 'Keluar',
+    ],
+    'footer' => [
+        'created' => 'Dibuat',
+        'by' => 'Oleh'
     ]
 ];

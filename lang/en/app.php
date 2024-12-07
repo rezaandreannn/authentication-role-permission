@@ -16,5 +16,9 @@ return [
         'profile' => 'My Profile',
         'setting' => 'Setting',
         'logout' => 'Logout',
+    ],
+    'footer' => [
+        'created' => 'Created',
+        'by' => 'By'
     ]
 ];

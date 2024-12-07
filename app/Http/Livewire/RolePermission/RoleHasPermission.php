@@ -32,7 +32,7 @@ class RoleHasPermission extends Component
         $role = Role::find($this->selectedRoleId);
         if ($role) {
             $role->permissions()->sync($this->selectedPermissions);
-            session()->flash('message', 'Permissions updated successfully!');
+            session()->flash('message', trans('role-permission.role_has_permission.success'));
         }
         \Artisan::call('permission:cache-reset');
         return redirect()->to(request()->header('Referer'));

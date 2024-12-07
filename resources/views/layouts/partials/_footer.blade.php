@@ -4,8 +4,8 @@
               <p>{{ date('Y')}} &copy; {{ config('app.name')}}</p>
           </div>
           <div class="float-end">
-              <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                  by <a href="https://rsumm.com">RSU Muhammadiyah Metro</a></p>
+              <p>{{ __('app.footer.created')}} <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
+                  {{ __('app.footer.by')}} <a href="https://rsumm.com">RSU Muhammadiyah Metro</a></p>
           </div>
       </div>
   </footer>
