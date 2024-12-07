@@ -57,5 +57,13 @@ return [
             'updated' => 'Data successfully updated!',
             'delete' => 'Data successfully deleted!'
         ]
+    ],
+    'user_has_role' => [
+        'title' => 'User has role',
+        'button_save' => 'Save role'
+    ],
+    'user_has_permission' => [
+        'title' => 'User has permission',
+        'button_save' => 'Save permission'
     ]
 ];

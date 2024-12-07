@@ -2,7 +2,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last mb-2 d-flex justify-content-between align-items-center">
-                    <h3>User Has Role</h3>
+                    <h3>{{ __('role-permission.user_has_role.title')}}</h3>
                     <div class="d-flex">
                         <a href="{{ route('user.index')}}" class="btn btn-outline-primary me-2">
                             <i class="fas fa-chevron-left fs-4"></i>
@@ -15,9 +15,9 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User</li>
-                            <li class="breadcrumb-item active" aria-current="page">Role</li>
+                            <li class="breadcrumb-item"><a href="index.html">{{ __('app.sidebar.dashboard')}}</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="index.html">{{ __('app.sidebar.user')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('role-permission.user_has_role.title')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -69,7 +69,7 @@
                             </ul>
                         </div>
                         <div class="card-footer d-flex justify-content-center px-1 py-1">
-                            <button wire:click="save" class="btn btn-primary">Simpan Role</button>
+                            <button wire:click="save" class="btn btn-primary">{{ __('role-permission.user_has_role.button_save')}}</button>
                         </div>
                     </div>
                 </div>

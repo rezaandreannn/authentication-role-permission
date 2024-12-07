@@ -3,14 +3,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>DataTable</h3>
-                    <p class="text-subtitle text-muted">For user to check they list</p>
+                    <h3>{{ __('dataTable.user.title')}}</h3>
+                    <p class="text-subtitle text-muted">{{ __('dataTable.user.sub_title')}}</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User</li>
+                            <li class="breadcrumb-item"><a href="index.html">{{ __('app.sidebar.dashboard')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('app.sidebar.user')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,11 +22,11 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>{{ __('dataTable.user.name')}}</th>
+                                <th>{{ __('dataTable.user.email')}}</th>
+                                <th>{{ __('dataTable.user.status')}}</th>
                                 <th>{{ ucfirst(__('role-permission.role.title')) }} & {{ ucfirst(__('role-permission.permission.title'))    }}</th>
-                                <th>Aksi</th>
+                                <th>{{ __('dataTable.user.action')}}</th>
                             </tr>
                         </thead>
                         <tbody>

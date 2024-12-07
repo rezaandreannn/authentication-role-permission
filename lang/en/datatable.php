@@ -11,4 +11,13 @@ return [
         'next' => 'Next',
         'previous' => 'Previous',
     ],
+    'user' => [
+        'title' => 'User',
+        'sub_title' => 'For user to check they list',
+        'name' => 'Name',
+        'full_name' => 'Full name',
+        'email' => 'Email',
+        'status' => 'Status',
+        'action' => 'Action'
+    ]
 ];

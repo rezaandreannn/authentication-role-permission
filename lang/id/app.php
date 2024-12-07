@@ -5,7 +5,7 @@ return [
         'header' => [
             'authentication_authoriztion' => 'Keamanan akses'
         ],
-        'dashboard' => 'Dashboard',
+        'dashboard' => 'Beranda',
         'auth' => 'Autentikasi',
         'user' => 'Pengguna',
         'role' => 'Peran',

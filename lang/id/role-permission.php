@@ -57,5 +57,14 @@ return [
             'updated' => 'Data berhasil diperbarui!',
             'delete' => 'Data berhasil dihapus!'
         ]
+    ],
+    'user_has_role' => [
+        'title' => 'Pengguna memiliki peran',
+        'button_save' => 'Simpan peran'
+    ],
+    'user_has_permission' => [
+        'title' => 'Pengguna memiliki perizinan',
+        'button_save' => 'Simpan perizinan'
     ]
+
 ];

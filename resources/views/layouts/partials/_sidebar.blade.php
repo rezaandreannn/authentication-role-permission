@@ -17,7 +17,7 @@
                  <li class="sidebar-item  ">
                      <a href="index.html" class='sidebar-link'>
                          <i class="bi bi-grid-fill"></i>
-                         <span>Dashboard</span>
+                         <span>{{ __('app.sidebar.dashboard')}}</span>
                      </a>
                  </li>
                  @endcan

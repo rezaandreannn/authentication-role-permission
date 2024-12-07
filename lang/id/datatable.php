@@ -11,4 +11,13 @@ return [
         'next' => 'Berikutnya',
         'previous' => 'Sebelumnya',
     ],
+    'user' => [
+        'title' => 'Pengguna',
+        'sub_title' => 'Agar pengguna dapat memeriksa daftar mereka',
+        'name' => 'Nama',
+        'full_name' => 'Nama lengkap',
+        'email' => 'Email',
+        'status' => 'Status',
+        'action' => 'Aksi'
+    ]
 ];
