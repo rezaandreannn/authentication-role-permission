@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="{{ $title }}">
     <div class="mb-4 text-sm text-gray-600">
         {{ __('auth.forgot.description') }}
     </div>

@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="{{ $title }}">
     <h1 class="auth-title">{{ __('auth.login.title') }}</h1>
     <p class="auth-subtitle mb-5">{{ __('auth.login.subtitle') }}</p>
 

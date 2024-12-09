@@ -17,7 +17,8 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-        return view('auth.confirm-password');
+        $title = trans('auth.forgot.confirm');
+        return view('auth.confirm-password', compact('title'));
     }
 
     /**
