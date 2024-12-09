@@ -10,12 +10,14 @@ class UserHasPermission extends Component
 {
 
     public $user;
+    public $title;
     public $permissions;
     public $selectedPermissions = [];
     public $selectedUserId;
 
     public function mount($id)
     {
+        $this->title = trans('role-permission.user_has_permission.title');
         $this->user = User::findOrFail($id);
         $this->permissions = Permission::all();
         $this->selectedUserId = $this->user->id;
@@ -38,6 +40,7 @@ class UserHasPermission extends Component
 
     public function render()
     {
-        return view('livewire.role-permission.user-has-permission');
+        return view('livewire.role-permission.user-has-permission')
+            ->layout('layouts.app', ['title' => $this->title]);
     }
 }

@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 class RoleHasPermission extends Component
 {
     public $roles;
+    public $title;
     public $userId;
     public $permissions;
     public $selectedRoleId;
@@ -17,6 +18,7 @@ class RoleHasPermission extends Component
 
     public function mount()
     {
+        $this->title = trans('role-permission.role_has_permission.title');
         $this->roles = Role::all();
         $this->permissions = Permission::all();
     }
@@ -40,6 +42,7 @@ class RoleHasPermission extends Component
 
     public function render()
     {
-        return view('livewire.role-permission.role-has-permission');
+        return view('livewire.role-permission.role-has-permission')
+            ->layout('layouts.app', ['title' => $this->title]);
     }
 }

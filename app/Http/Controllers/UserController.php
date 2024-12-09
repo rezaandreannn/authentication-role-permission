@@ -14,9 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $title = trans('datatable.user.title');
         $users = User::all();
 
-        return view('pages.user.index', compact('users'));
+        return view('pages.user.index', compact('users', 'title'));
     }
 
     /**

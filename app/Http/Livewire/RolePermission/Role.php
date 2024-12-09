@@ -21,7 +21,7 @@ class Role extends Component
     {
         return view('livewire.role-permission.role', [
             'roles' => ModelRole::all()
-        ]);
+        ])->layout('layouts.app', ['title' => trans('role-permission.role.title')]);
     }
 
     public function toggleForm()

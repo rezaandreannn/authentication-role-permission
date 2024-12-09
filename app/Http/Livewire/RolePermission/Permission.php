@@ -20,7 +20,7 @@ class Permission extends Component
     {
         return view('livewire.role-permission.permission', [
             'permissions' => ModelsPermission::all()
-        ]);
+        ])->layout('layouts.app', ['title' => trans('role-permission.permission.title')]);
     }
 
     public function toggleForm()

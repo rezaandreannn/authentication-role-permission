@@ -67,6 +67,7 @@ return [
         'button_save' => 'Save permission'
     ],
     'role_has_permission' => [
+        'title' => 'Role has permission',
         'select_role' => 'Select role',
         'permission' => 'Permission',
         'button_save' => 'Save permission',

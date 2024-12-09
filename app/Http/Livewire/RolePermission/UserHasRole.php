@@ -8,31 +8,7 @@ use Spatie\Permission\Models\Role;
 
 class UserHasRole extends Component
 {
-    // public $user;
-    // public $roles;
-    // public $selectedUserId;
-    // public $selectedRoles = [];
-
-    // public function mount($id)
-    // {
-    //     $this->user = User::find($id);
-    //     $this->roles = Role::all();
-    // }
-
-    // public function updatedSelectedUserId()
-    // {
-    //     $user = User::find($this->selectedUserId);
-    //     $this->selectedRoles = $user ? $user->roles->pluck('name')->toArray() : [];
-    // }
-
-    // public function save()
-    // {
-    //     $user = User::find($this->selectedUserId);
-    //     if ($user) {
-    //         $user->syncRoles($this->selectedRoles);
-    //         session()->flash('message', 'Roles berhasil diperbarui untuk user!');
-    //     }
-    // }
+    public $title;
     public $user;
     public $roles;
     public $selectedRoles = [];
@@ -40,6 +16,7 @@ class UserHasRole extends Component
 
     public function mount($id)
     {
+        $this->title = trans('role-permission.user_has_role.title');
         $this->user = User::findOrFail($id);
         $this->roles = Role::all();
         $this->selectedUserId = $this->user->id;
@@ -59,6 +36,7 @@ class UserHasRole extends Component
 
     public function render()
     {
-        return view('livewire.role-permission.user-has-role');
+        return view('livewire.role-permission.user-has-role')
+            ->layout('layouts.app', ['title' => $this->title]);
     }
 }

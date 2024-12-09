@@ -67,6 +67,7 @@ return [
         'button_save' => 'Simpan perizinan'
     ],
     'role_has_permission' => [
+        'title' => 'Peran memiliki izin',
         'select_role' => 'Pilih peran',
         'permission' => 'Perizinan',
         'button_save' => 'Simpan perizinan',
