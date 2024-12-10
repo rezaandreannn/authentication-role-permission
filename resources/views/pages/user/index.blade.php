@@ -25,7 +25,6 @@
                                 <th>{{ __('dataTable.user.name')}}</th>
                                 <th>{{ __('dataTable.user.email')}}</th>
                                 <th>{{ __('dataTable.user.status')}}</th>
-                                <th>{{ ucfirst(__('role-permission.role.title')) }} & {{ ucfirst(__('role-permission.permission.title'))    }}</th>
                                 <th>{{ __('dataTable.user.action')}}</th>
                             </tr>
                         </thead>
@@ -38,14 +37,17 @@
                                     <input type="checkbox" class="form-check-input" {{ $user->email_verified_at ? 'checked' : '' }} data-id="{{ $user->id }}" onchange="updateVerificationStatus(this)">
                                 </td>
                                 <td>
-                                    <a href="{{ route('user-has-role.index', $user->id )}}" class="badge bg-primary">{{ ucfirst(__('role-permission.role.title')) }}</a>
-                                    <a href="{{ route('user-has-permission.index', $user->id )}}" class="badge bg-primary">{{ ucfirst(__('role-permission.permission.title')) }}</a>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-warning btn-sm">
-                                        <i class="far fa-edit"></i>
+                                    <a href="#" class="text-secondary dropdown-toggle-no-caret me-3" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-cog"></i>
                                     </a>
-                                    <a href="" class="btn btn-danger btn-sm">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('user-has-role.index', $user->id )}}">{{ __('role-permission.user_has_role.title')}}</a>
+                                        <a class="dropdown-item" href="{{ route('user-has-permission.index', $user->id )}}">{{ __('role-permission.user_has_permission.title')}}</a>
+                                    </div>
+                                    <a href="" class="text-secondary me-3">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="" class="text-secondary">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -60,6 +62,14 @@
 
     @push('css-library')
     <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
+
+    <style>
+        .dropdown-toggle-no-caret::after {
+            display: none !important;
+            /* Menghilangkan caret */
+        }
+
+    </style>
 
     @endpush
 

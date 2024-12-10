@@ -76,12 +76,14 @@
                                <td>{{ $permission->name }}</td>
                                <td>{{ $permission->guard_name }}</td>
                                <td>
-                                   <button wire:click="showEditForm({{ $permission->id }})" class="btn btn-warning btn-sm">
-                                       <i class="far fa-edit"></i>
-                                   </button>
-                                   <button onclick="confirm('Apakah Anda yakin ingin menghapus data ini?') || event.stopImmediatePropagation()" wire:click="delete({{ $permission->id }})" class="btn btn-danger btn-sm">
-                                       <i class="fas fa-trash"></i>
-                                   </button>
+                                   <div style="display: flex; gap: 10px;">
+                                       <button wire:click="showEditForm({{ $permission->id }})" class="text-secondary" style="border: none; background: none;">
+                                           <i class="fas fa-pencil-alt"></i>
+                                       </button>
+                                       <button onclick="confirm('Apakah Anda yakin ingin menghapus data ini?') || event.stopImmediatePropagation()" wire:click="delete({{ $permission->id }})" class="text-secondary" style="border: none; background: none;">
+                                           <i class="fas fa-trash"></i>
+                                       </button>
+                                   </div>
                                </td>
                            </tr>
                            @endforeach
