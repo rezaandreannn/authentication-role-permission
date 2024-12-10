@@ -24,7 +24,7 @@
                             <tr>
                                 <th>{{ __('dataTable.user.name')}}</th>
                                 <th>{{ __('dataTable.user.email')}}</th>
-                                <th>{{ __('dataTable.user.status')}}</th>
+                                <th>{{ __('dataTable.user.inactive')}}</th>
                                 <th>{{ __('dataTable.user.action')}}</th>
                             </tr>
                         </thead>

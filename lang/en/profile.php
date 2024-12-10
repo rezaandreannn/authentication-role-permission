@@ -13,6 +13,8 @@ return [
     'current-password' => 'Current Password',
     'new-password' => 'New Password',
     'confirm-password' => 'Confirm Password',
+    'delete-account' => 'Delete account',
+    'sub-delete-account' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information you wish to keep.'
 
 
 ];

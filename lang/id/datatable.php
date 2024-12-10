@@ -17,7 +17,7 @@ return [
         'name' => 'Nama',
         'full_name' => 'Nama lengkap',
         'email' => 'Email',
-        'status' => 'Status',
+        'inactive' => 'Aktif',
         'action' => 'Aksi'
     ]
 ];

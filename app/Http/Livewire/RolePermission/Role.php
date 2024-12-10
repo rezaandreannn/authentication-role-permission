@@ -17,6 +17,10 @@ class Role extends Component
         'guard' => 'required',
     ];
 
+    protected $listeners = [
+        'delete' => 'delete'
+    ];
+
     public function render()
     {
         return view('livewire.role-permission.role', [
@@ -36,6 +40,7 @@ class Role extends Component
     {
         $this->validate();
 
+
         if ($this->isEdit) {
             $user = ModelRole::findOrFail($this->roleId);
             $user->update([
@@ -49,9 +54,13 @@ class Role extends Component
             ]);
         }
 
-        // $this->emit('flashMessage');
+        $this->dispatchBrowserEvent('show-toast', [
+            'message' => $this->isEdit
+                ? trans('role-permission.role.message.updated')
+                : trans('role-permission.role.message.create'),
+            'type' => 'success',
+        ]);
 
-        session()->flash('message', $this->isEdit ? trans('role-permission.role.message.updated') : trans('role-permission.role.message.create'));
 
         // Reset Form
         $this->resetForm();
@@ -76,14 +85,22 @@ class Role extends Component
         $this->isEdit = false;
     }
 
-    public function delete($id)
+    public function delete($roleId)
     {
-        $role = ModelRole::find($id);
-        $role->delete();
+        try {
+            $role = ModelRole::findOrFail($roleId);
+            $role->delete();
 
-        session()->flash('message', trans('role-permission.role.message.delete'));
-
-        $this->resetForm();
+            $this->dispatchBrowserEvent('show-toast', [
+                'message' => trans('role-permission.role.message.delete'),
+                'type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('show-toast', [
+                'message' => 'Gagal menghapus data.',
+                'type' => 'error',
+            ]);
+        }
     }
 
     private function resetForm()

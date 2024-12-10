@@ -41,6 +41,7 @@
                    @endif
                </div>
 
+               {{-- breadcrumbs --}}
                <div class="col-12 col-md-6 order-md-2 order-first">
                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                        <ol class="breadcrumb">
@@ -50,15 +51,9 @@
                    </nav>
                </div>
            </div>
-           <div>
-               @if (session()->has('message'))
-               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                   <strong>{{ session('message')}}</strong>
-                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-               </div>
-               @endif
-           </div>
        </div>
+
+       {{-- section table --}}
        <section class="section">
            <div class="card">
                <div class="card-body">
@@ -80,7 +75,7 @@
                                        <button wire:click="showEditForm({{ $role->id }})" class="text-secondary" style="border: none; background: none;">
                                            <i class="fas fa-pencil-alt"></i>
                                        </button>
-                                       <button onclick="confirm('Apakah Anda yakin ingin menghapus data ini?') || event.stopImmediatePropagation()" wire:click="delete({{ $role->id }})" class="text-secondary" style="border: none; background: none;">
+                                       <button onclick="deleteConfirmation({{ $role->id ?? 0 }})" class="text-secondary" style="border: none; background: none;">
                                            <i class="fas fa-trash"></i>
                                        </button>
                                    </div>
@@ -95,11 +90,17 @@
 
        @push('css-library')
        <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
+       <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/toastify/toastify.css') }}">
+       <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
 
        @endpush
 
        @push('js-library')
        <script src="{{ asset('mazer/dist/assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
+       <script src="{{ asset('mazer/dist/assets/vendors/toastify/toastify.js') }}"></script>
+       <script src="{{ asset('mazer/dist/assets/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+       {{-- inisiati tabel --}}
        <script>
            let table1 = document.querySelector('#table1');
 
@@ -132,5 +133,47 @@
 
        </script>
 
+       {{-- konfirmasi dapus data berdasarkan Id --}}
+       <script>
+           function deleteConfirmation(roleId) {
+               let confirmationTitle = "{{ App::getLocale() == 'id' ? 'Apakah anda yakin?' : 'Are you sure?' }}";
+               let confirmationText = "{{ App::getLocale() == 'id' ? 'Data ini akan dihapus secara permanen!' : 'This data will be permanently deleted!' }}";
+               let confirmButtonText = "{{ App::getLocale() == 'id' ? 'Ya, hapus!' : 'Yes, delete!' }}";
+               let cancelButtonText = "{{ App::getLocale() == 'id' ? 'Batal' : 'Cancel' }}";
+
+               Swal.fire({
+                   title: confirmationTitle
+                   , text: confirmationText
+                   , icon: 'warning'
+                   , showCancelButton: true
+                   , confirmButtonColor: '#3085d6'
+                   , cancelButtonColor: '#d33'
+                   , confirmButtonText: confirmButtonText
+                   , cancelButtonText: cancelButtonText
+               }).then((result) => {
+                   if (result.isConfirmed) {
+                       if (result.isConfirmed) {
+                           Livewire.emit('delete', roleId);
+                       }
+                   }
+               });
+           }
+
+       </script>
+
+       {{-- menampilkan toastify message dari controller --}}
+       <script>
+           window.addEventListener('show-toast', event => {
+               Toastify({
+                   text: event.detail.message
+                   , duration: 3000
+                   , close: true
+                   , gravity: "top"
+                   , position: "center"
+                   , backgroundColor: event.detail.type === 'success' ? "linear-gradient(to right, #00b09b, #96c93d)" : "#F44336"
+               , }).showToast();
+           });
+
+       </script>
        @endpush
    </div>
