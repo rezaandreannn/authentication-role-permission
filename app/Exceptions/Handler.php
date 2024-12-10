@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,24 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        if ($exception instanceof AccessDeniedHttpException) {
+            return response()->view('errors.403', [], 403);
+        }
+
+        if ($exception instanceof \Illuminate\Validation\ValidationException) {
+            return redirect()->back()
+                ->withErrors($exception->errors())
+                ->withInput();
+        }
+        // Tangani semua jenis error dengan mengarahkan ke halaman error 500
+        return response()->view('errors.500', [], 500);
     }
 }
