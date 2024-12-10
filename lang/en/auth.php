@@ -51,7 +51,9 @@ return [
         'title' => 'Forgot password',
         'confirm' => 'Confirm password',
         'description' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
-        'reset_link' => 'Email Password Reset Link'
+        'reset_link' => 'Email Password Reset Link',
+        'success' => 'We have emailed your password reset link!',
+        'error' => "We can't find a user with that email address."
     ],
 
     'failed' => 'These credentials do not match our records.',

@@ -52,7 +52,9 @@ return [
         'title' => 'Lupa kata sandi',
         'confirm' => 'Konfirmasi kata sandi',
         'description' => 'Lupa Kata Sandi Anda? Tidak ada masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru.',
-        'reset_link' => 'Tautan Reset Kata Sandi Email'
+        'reset_link' => 'Tautan Reset Kata Sandi Email',
+        'success' => 'Kami telah mengirim email tautan pengaturan ulang kata sandi Anda!',
+        'error' => 'Kami tidak dapat menemukan pengguna dengan alamat email tersebut.'
     ],
 
     'failed' => 'Kredensial ini tidak cocok dengan data kami.',

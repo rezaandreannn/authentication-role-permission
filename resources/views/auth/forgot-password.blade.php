@@ -4,7 +4,9 @@
     </div>
 
     <!-- Session Status -->
+    @if(session('status'))
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    @endif
 
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
