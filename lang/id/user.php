@@ -12,6 +12,7 @@ return  [
     ],
     'edit' => [
         'title' => 'Ubah Pengguna',
+        'sub_title' => 'Ubah informasi yang diperlukan untuk memperbarui daftar pengguna.',
         'success' => 'Berhasil mengubah data.'
     ]
 ];

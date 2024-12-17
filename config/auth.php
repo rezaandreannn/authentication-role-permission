@@ -108,4 +108,7 @@ return [
 
     'password_timeout' => 10800,
 
+
+    'registered_user' => false,
+
 ];

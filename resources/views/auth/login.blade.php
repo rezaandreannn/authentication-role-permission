@@ -38,7 +38,9 @@
         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5" data-loading-text="{{ __('auth.login.form.loading') }}" onclick="this.innerHTML = `<div class='spinner'></div> ${this.getAttribute('data-loading-text')}`;">{{ __('auth.login.form.submit')}}</button>
     </form>
     <div class="text-center mt-5 text-lg fs-4">
+        @if(config('auth.registered_user') === true)
         <p class="text-gray-600">{{ __('auth.login.dont_have_an_account')}} <a href="{{ route('register')}}" class="font-bold">{{ __('auth.register.title')}} </a>.</p>
+        @endif
         <p><a class="font-bold" href="{{ route('password.request')}}">{{ __('auth.forgot.title')}}?</a>.</p>
     </div>
 </x-guest-layout>

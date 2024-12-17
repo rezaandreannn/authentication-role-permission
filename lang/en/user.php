@@ -12,6 +12,7 @@ return  [
     ],
     'edit' => [
         'title' => 'Edit user',
+        'sub_title' => 'Update the necessary information to keep the user list up-to-date.',
         'success' => 'Updated succesfully!'
     ]
 ];
