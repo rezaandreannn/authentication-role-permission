@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $title = trans('datatable.user.title');
+        $title = trans('user.index.title');
         $users = User::all();
 
         return view('pages.user.index', compact('users', 'title'));
@@ -60,7 +60,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = trans('user.edit.title');
+        $user = User::find($id);
+
+        return view('pages.user.edit', compact('title', 'user'));
     }
 
     /**
@@ -72,7 +75,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user) {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'full_name' => 'required|string|max:255',
+            ]);
+
+            $user->update($validatedData);
+
+            return redirect()->route('user.index')->with('message', trans('user.edit.success'));
+        }
     }
 
     /**

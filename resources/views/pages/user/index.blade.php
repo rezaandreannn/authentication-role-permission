@@ -44,7 +44,7 @@
                                         <a class="dropdown-item" href="{{ route('user-has-role.index', $user->id )}}">{{ __('role-permission.user_has_role.title')}}</a>
                                         <a class="dropdown-item" href="{{ route('user-has-permission.index', $user->id )}}">{{ __('role-permission.user_has_permission.title')}}</a>
                                     </div>
-                                    <a href="" class="text-secondary me-3">
+                                    <a href="{{ route('user.edit', $user->id )}}" class="text-secondary me-3">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <a href="" class="text-secondary">
@@ -62,6 +62,7 @@
 
     @push('css-library')
     <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/toastify/toastify.css') }}">
 
     <style>
         .dropdown-toggle-no-caret::after {
@@ -75,6 +76,7 @@
 
     @push('js-library')
     <script src="{{ asset('mazer/dist/assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
+    <script src="{{ asset('mazer/dist/assets/vendors/toastify/toastify.js') }}"></script>
     <script>
         let table1 = document.querySelector('#table1');
 
@@ -124,20 +126,62 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    let successText = "{{ App::getLocale() == 'id' ? 'Berhasil mempebarui status.' : 'Successfully updated the status.' }}";
+                    let gagalText = "{{ App::getLocale() == 'id' ? 'Gagal memperbarui status.' : 'Failed to update the status.' }}";
+
                     if (data.success) {
-                        alert('Status verifikasi berhasil diperbarui.');
+                        Toastify({
+                            text: successText
+                            , duration: 3000
+                            , close: true
+                            , gravity: "top"
+                            , position: "center"
+                            , backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+                        , }).showToast();
                     } else {
-                        alert('Gagal memperbarui status.');
+                        Toastify({
+                            text: gagalText
+                            , duration: 3000
+                            , close: true
+                            , gravity: "top"
+                            , position: "center"
+                            , backgroundColor: "#F44336"
+                        , }).showToast();
                         checkbox.checked = !isChecked; // Kembalikan status checkbox jika gagal
                     }
                 })
                 .catch(error => {
-                    alert('Terjadi kesalahan!');
+                    let errorText = "{{ App::getLocale() == 'id' ? 'Terjadi kesalahan.' : 'An error occurred.' }}";
+                    Toastify({
+                        text: errorText
+                        , duration: 3000
+                        , close: true
+                        , gravity: "top"
+                        , position: "center"
+                        , backgroundColor: "#F44336"
+                    , }).showToast();
                     checkbox.checked = !isChecked; // Kembalikan status checkbox jika error
                 });
         }
 
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if(session('message'))
+            Toastify({
+                text: "{{ session('message') }}"
+                , duration: 3000
+                , close: true
+                , gravity: "top"
+                , position: "center"
+                , backgroundColor: "#4CAF50"
+            , }).showToast();
+            @endif
+        });
+
+    </script>
+
 
 
     @endpush

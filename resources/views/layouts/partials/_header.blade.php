@@ -51,7 +51,8 @@
                                </div>
                                <div class="user-img d-flex align-items-center">
                                    <div class="avatar avatar-md">
-                                       <img src="{{ asset('mazer/dist/assets/images/faces/1.jpg')}}">
+                                       <img src="{{ Avatar::create(Auth::user()->full_name)->toBase64() }}" />
+                                       {{-- <img src="{{ asset('mazer/dist/assets/images/faces/1.jpg')}}"> --}}
                                    </div>
                                </div>
                            </div>

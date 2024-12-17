@@ -25,7 +25,7 @@
                  @can('read user')
                  <li class="sidebar-item  ">
                      <a href="index.html" class='sidebar-link'>
-                         <i class="bi bi-grid-fill"></i>
+                         <i class="bi bi-people-fill"></i>
                          <span>Users</span>
                      </a>
                  </li>
