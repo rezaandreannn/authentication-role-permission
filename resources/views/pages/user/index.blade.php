@@ -47,9 +47,14 @@
                                     <a href="{{ route('user.edit', $user->id )}}" class="text-secondary me-3">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="" class="text-secondary">
+                                    <a href="#" onclick="deleteConfirmation('{{ route('user.destroy', $user->id) }}')" class="text-secondary">
                                         <i class="fas fa-trash"></i>
                                     </a>
+
+                                    <form id="delete-form" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -63,6 +68,7 @@
     @push('css-library')
     <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/simple-datatables/style.css')}}">
     <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/toastify/toastify.css') }}">
+    <link rel="stylesheet" href="{{ asset('mazer/dist/assets/vendors/sweetalert2/sweetalert2.min.css') }}">
 
     <style>
         .dropdown-toggle-no-caret::after {
@@ -77,6 +83,8 @@
     @push('js-library')
     <script src="{{ asset('mazer/dist/assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
     <script src="{{ asset('mazer/dist/assets/vendors/toastify/toastify.js') }}"></script>
+    <script src="{{ asset('mazer/dist/assets/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
     <script>
         let table1 = document.querySelector('#table1');
 
@@ -106,6 +114,34 @@
                 }
             }
         });
+
+    </script>
+
+    {{-- konfirmasi delete --}}
+    <script>
+        function deleteConfirmation(url) {
+            let confirmationTitle = "{{ App::getLocale() == 'id' ? 'Apakah anda yakin?' : 'Are you sure?' }}";
+            let confirmationText = "{{ App::getLocale() == 'id' ? 'Data ini akan dihapus secara permanen!' : 'This data will be permanently deleted!' }}";
+            let confirmButtonText = "{{ App::getLocale() == 'id' ? 'Ya, hapus!' : 'Yes, delete!' }}";
+            let cancelButtonText = "{{ App::getLocale() == 'id' ? 'Batal' : 'Cancel' }}";
+
+            Swal.fire({
+                title: confirmationTitle
+                , text: confirmationText
+                , icon: 'warning'
+                , showCancelButton: true
+                , confirmButtonColor: '#3085d6'
+                , cancelButtonColor: '#d33'
+                , confirmButtonText: confirmButtonText
+                , cancelButtonText: cancelButtonText
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.getElementById('delete-form');
+                    form.action = url; // Set URL yang diberikan ke form
+                    form.submit(); // Submit form
+                }
+            });
+        }
 
     </script>
 

@@ -97,7 +97,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('user.index')->with('message', trans('user.delete.success'));
     }
 
     public function updateVerificationStatus(Request $request, User $user)
